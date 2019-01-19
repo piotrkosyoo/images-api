@@ -1,2 +1,2 @@
 # images-api
-Example golang project
+Simple golang project to run in docker container

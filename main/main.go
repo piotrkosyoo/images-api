@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"images-api/main/images"
+	"images-api/images"
 	"log"
 	"net/http"
 	"sync"
@@ -19,7 +19,7 @@ func main() {
 func buildServer() {
 	http.HandleFunc("/api/info", infoEndpoint)
 	http.HandleFunc("/api/sinus", printSinusDefault)
-	log.Fatal(http.ListenAndServe("localhost:8000", nil))
+	log.Fatal(http.ListenAndServe(":8080", nil))
 }
 
 func infoEndpoint(w http.ResponseWriter, r *http.Request) {

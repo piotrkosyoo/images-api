@@ -24,4 +24,5 @@ pipeline {
                 pullRequest.addLabel('Build success')
             }
        }
+    }
 }

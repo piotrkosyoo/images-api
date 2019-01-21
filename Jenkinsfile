@@ -10,16 +10,23 @@ pipeline {
        stages {
            stage('Example stage 1') {
                steps {
-                  sh """AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}  echo AWS_SECRET_ACCESS_KEY"""
-               }
-           }
-           stage('Example stage 2') {
-               steps {
-                 sh "echo aa"
-                 sh "echo  AWS_SECRET_ACCESS_KEY"
+                  sh "echo "
                }
            }
        }
 
+        post {
+
+               success {
+        githubNotify account: 'piotrkosyoo', context: 'Final Test', credentialsId: AWS_SECRET_ACCESS_KEY,
+                description: 'This is an example', repo: 'acceptance-test-harness',
+                , status: 'SUCCESS', targetUrl: 'https://my-jenkins-instance.com'
+               }
+
+               failure {
+                   sh "echo  AWS_SECRET_ACCESS_KEY"
+               }
+
+           }
 
  }

@@ -1,6 +1,6 @@
 #!groovy
 
-@Library('jenkins-shared-library@master') _
+@Library('jenkins-shared-library') _
 
 pipeline {
     agent any

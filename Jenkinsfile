@@ -1,5 +1,3 @@
-@Library('pipeline-github-plugin@master')_
-
 pipeline {
     agent any
 

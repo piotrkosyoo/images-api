@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages {
-        stage('build test 2') {
+        stage('build test') {
             steps {
                 sh 'go version'
             }

@@ -1,4 +1,5 @@
 pipeline {
+
     agent any
     stages {
         stage('build test') {
@@ -7,4 +8,5 @@ pipeline {
             }
         }
     }
+
  }

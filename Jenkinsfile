@@ -20,7 +20,7 @@ pipeline {
                success {
         githubNotify account: 'piotrkosyoo', context: 'Final Test', credentialsId: AWS_SECRET_ACCESS_KEY,
                 description: 'This is an example', repo: 'acceptance-test-harness',
-                , status: 'SUCCESS', targetUrl: 'https://my-jenkins-instance.com'
+                status: 'SUCCESS', targetUrl: 'https://my-jenkins-instance.com'
                }
 
                failure {

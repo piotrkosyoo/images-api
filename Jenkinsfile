@@ -21,8 +21,7 @@ pipeline {
         success {
             script {
                 pullRequest.addLabel('Build success')
-                }
-            }
-       }
+             }
+        }
     }
-}
+ }

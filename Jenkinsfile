@@ -10,7 +10,7 @@ pipeline {
        stages {
            stage('Example stage 1') {
                steps {
-                   echo Hello World
+                  sh """AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}  echo AWS_SECRET_ACCESS_KEY"""
                }
            }
            stage('Example stage 2') {

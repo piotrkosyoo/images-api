@@ -5,7 +5,7 @@ pipeline {
     agent any
 
        environment {
-           AWS_SECRET_ACCESS_KEY = credentials('cc-credentialsId')
+           AWS_SECRET_ACCESS_KEY = credentials('github-new-cred')
        }
        stages {
            stage('Example stage 1') {

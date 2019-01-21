@@ -1,3 +1,5 @@
+
+
 pipeline {
     agent any
 
@@ -6,22 +8,6 @@ pipeline {
             steps {
                 sh 'go version'
             }
-        }
-    }
-
-    post {
-       failure {
-            script {
-
-                   pullRequest.addLabel('Build Failed')
-
-            }
-       }
-
-        success {
-            script {
-                pullRequest.addLabel('Build success')
-             }
         }
     }
  }

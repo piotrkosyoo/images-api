@@ -2,7 +2,7 @@ pipeline {
 
     agent any
     stages {
-        stage('builfsdfsdfd test see') {
+        stage('build') {
             steps {
                 sh 'go version'
             }

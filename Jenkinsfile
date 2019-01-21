@@ -7,4 +7,14 @@ pipeline {
             }
         }
     }
+
+    post {
+            success {
+                githubNotify description: 'This is a shorted example',  status: 'SUCCESS'
+            }
+
+            failure {
+               githubNotify description: 'This is a shorted example',  status: 'SUCCESS'
+            }
+        }
  }

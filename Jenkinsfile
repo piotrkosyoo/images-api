@@ -1,4 +1,4 @@
-@Library('pipeline-github-plugin')_
+@Library('pipeline-github-plugin@master')_
 
 pipeline {
     agent any

@@ -1,4 +1,4 @@
-@Library('jenkins-shared-library')_
+@Library('pipeline-github-plugin')_
 
 pipeline {
     agent any

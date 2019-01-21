@@ -15,8 +15,8 @@ pipeline {
            }
            stage('Example stage 2') {
                steps {
-                 echo "aa"
-                 echo  AWS_SECRET_ACCESS_KEY
+                 sh "echo aa"
+                 sh "echo  ${AWS_SECRET_ACCESS_KEY}"
                }
            }
        }

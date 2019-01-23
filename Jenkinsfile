@@ -4,7 +4,6 @@ pipeline {
      stages {
          stage('Example stage 1') {
              steps {
-             sdfds
                sh "echo "
                }
            }

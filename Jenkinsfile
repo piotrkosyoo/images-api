@@ -14,7 +14,7 @@ pipeline {
               steps {
 
 
-                  sh "go build -v -o ./bin/images-api ./src"
+                  sh "go build -v -o ./bin/images-api"
                 //sh "go build -v -work -o images-api *.go"
                }
          }

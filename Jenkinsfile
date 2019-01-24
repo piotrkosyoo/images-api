@@ -2,11 +2,17 @@ pipeline {
     agent any
 
      stages {
-         stage('Build') {
+         stage('version') {
              steps {
-               sh "go sdfsdfversion"
+               sh "go version"
                }
-           }
+         }
+
+         stage('build') {
+              steps {
+                sh "go build -o main"
+               }
+         }
       }
 
      post {

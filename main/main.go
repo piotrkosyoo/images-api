@@ -1,8 +1,8 @@
-package main
+package code
 
 import (
 	"fmt"
-	"images-api/images"
+	"images-api/main/images"
 	"log"
 	"net/http"
 	"sync"
@@ -19,6 +19,8 @@ func main() {
 func buildServer() {
 	http.HandleFunc("/api/info", infoEndpoint)
 	http.HandleFunc("/api/sinus", printSinusDefault)
+	http.HandleFunc("/api/mandelbrot", mandelbrot)
+
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
 
@@ -33,4 +35,9 @@ func printSinusDefault(w http.ResponseWriter, r *http.Request) {
 	svg := images.BuildSinusXYZDefault()
 	w.Header().Set("Content-Type", "image/svg+xml")
 	w.Write(svg)
+}
+
+func mandelbrot(w http.ResponseWriter, r *http.Request) {
+	images.DrawMandelbrot(w)
+	w.Header().Set("Content-Type", "html")
 }

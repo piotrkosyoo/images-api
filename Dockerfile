@@ -1,10 +1,7 @@
 FROM golang:alpine
 
-ADD main /go/src/images-api/main/
-ADD main /go/src/images-api/images/
-WORKDIR /go/src/images-api/
-
-EXPOSE 8080
-
-CMD ["go", "run", "main/main.go"]
-
+RUN mkdir /app
+ADD bin/images-api-app /app
+WORKDIR /app
+EXPOSE 8081
+CMD ["/app/images-api-app"]

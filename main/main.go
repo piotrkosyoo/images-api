@@ -21,7 +21,7 @@ func buildServer() {
 	http.HandleFunc("/api/sinus", printSinusDefault)
 	http.HandleFunc("/api/mandelbrot", mandelbrot)
 
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	log.Fatal(http.ListenAndServe(":8081", nil))
 }
 
 func infoEndpoint(w http.ResponseWriter, r *http.Request) {

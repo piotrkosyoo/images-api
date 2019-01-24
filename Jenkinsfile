@@ -1,9 +1,6 @@
 pipeline {
     agent any
 
-    environment {
-        CC = $GOPATH
-    }
 
      stages {
          stage('version') {

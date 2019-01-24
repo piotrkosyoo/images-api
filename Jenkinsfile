@@ -7,8 +7,6 @@ pipeline {
              steps {
                sh "go version"
                sh "go env"
-               sh "mkdir -p /var/lib/jenkins/go/src/images-api"
-               sh "ln -s $WORKSPACE /var/lib/jenkins/go/src/images-api"
              }
          }
 

@@ -2,18 +2,14 @@ pipeline {
      agent any
 
 
-     environment {
-        GOPATH_APP = "$env.GOPATH"
-    }
-
      stages {
          stage('version') {
              steps {
                sh "go version"
                sh "go env"
 
-               sh "mkdir -p ${GOPATH_APP}/src/images-api"
-               sh "ln -s {$WORKSPACE} {GOPATH_APP}/src/images-api"
+               sh "mkdir -p /var/lib/jenkins/go/src/images-api"
+               sh "ln -s {$WORKSPACE} /var/lib/jenkins/go/src/images-api"
 
              }
          }

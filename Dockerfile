@@ -1,7 +1,7 @@
 FROM golang:alpine
 
-ADD ./main/ /go/src/images-api/main/
-ADD images /go/src/images-api/images/
+ADD src /go/src/images-api/main/
+ADD src/images /go/src/images-api/images/
 WORKDIR /go/src/images-api/
 
 EXPOSE 8080

@@ -1,18 +1,20 @@
 pipeline {
      agent any
+
      stages {
+
          stage('version') {
+
              steps {
                sh "go version"
-               echo "${env.WORKSPACE}"
-               sh "go env"
              }
          }
 
          stage('build') {
               steps {
-                 sh "go build -v -work  -o ./bin/images-api main/main.go"
-                 //sh "go build -v -work -o images-api *.go"
+                 sh "export GOPATH=/var/lib/jenkins/workspace/images-api-pipeline"
+                 sh "go env"
+                 sh "go build -v -work  -o ./bin/images-api src/main.go"
               }
          }
      }
@@ -23,6 +25,6 @@ pipeline {
                  issueAppend: true,
                  issueLabel: '',
                  issueTitle: '$JOB_NAME $BUILD_DISPLAY_NAME failed'])
-              }
+           }
      }
  }

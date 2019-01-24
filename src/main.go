@@ -1,8 +1,8 @@
-package main
+package src
 
 import (
 	"fmt"
-	"images-api/images"
+	"images-api/src/images"
 	"log"
 	"net/http"
 	"sync"

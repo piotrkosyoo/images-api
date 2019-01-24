@@ -2,6 +2,7 @@ def scmVars;
 def commitHash
 
 pipeline {
+
      agent any
 
      stages {

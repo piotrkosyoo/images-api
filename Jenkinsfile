@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        //CC = $GOPATH
+        CC = $GOPATH
     }
 
      stages {
@@ -15,6 +15,7 @@ pipeline {
 
          stage('build') {
               steps {
+
                sh '''
                   GOPATH=$(pwd)
                   cd src

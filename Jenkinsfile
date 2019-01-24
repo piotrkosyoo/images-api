@@ -3,8 +3,8 @@ pipeline {
 
 
      environment {
-        GOPATH = $GOPATH
-        WORKSPACE = $WORKSPACE
+        GOPATH = "$GOPATH"
+        WORKSPACE = "$WORKSPACE"
     }
 
      stages {

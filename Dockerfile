@@ -1,10 +1,10 @@
 FROM golang:alpine
 
 ADD ./main/ /go/src/images-api/main/
-ADD ./images/ /go/src/images-api/images/
+ADD src/app/images /go/src/images-api/images/
 WORKDIR /go/src/images-api/
 
 EXPOSE 8080
 
-CMD ["go", "run", "main/main.go"]
+CMD ["go", "run", "src/main.go"]
 

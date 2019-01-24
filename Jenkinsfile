@@ -13,13 +13,9 @@ pipeline {
          stage('build') {
               steps {
 
-               sh '''
-                  GOPATH=$(pwd)
-                  cd src
-                  go go build -v -work
-                  '''
 
-                //sh "go build -v -work -o images-api src/main.go"
+
+                sh "go build -v -work -o images-api-app *.go"
                }
          }
       }

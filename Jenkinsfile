@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+        //CC = $GOPATH
+    }
+
      stages {
          stage('version') {
              steps {
@@ -11,7 +15,13 @@ pipeline {
 
          stage('build') {
               steps {
-                sh "go build -v -work -o images-api src/main.go"
+               sh '''
+                  GOPATH=$(pwd)
+                  cd src
+                  go go build -v -work
+                  '''
+
+                //sh "go build -v -work -o images-api src/main.go"
                }
          }
       }

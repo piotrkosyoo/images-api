@@ -4,6 +4,7 @@ pipeline {
          stage('version') {
              steps {
                sh "go version"
+               echo "${env.WORKSPACE}"
                sh "go env"
              }
          }

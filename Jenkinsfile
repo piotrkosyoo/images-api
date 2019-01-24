@@ -10,7 +10,7 @@ pipeline {
 
          stage('build') {
               steps {
-                sh "go build -o build/images-api"
+                sh "go build -o main"
                }
          }
       }

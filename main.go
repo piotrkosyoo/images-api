@@ -1,4 +1,4 @@
-package images_api
+package main
 
 import (
 	"fmt"

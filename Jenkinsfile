@@ -31,7 +31,7 @@ pipeline {
 
         stage('Clean') {
               steps {
-                 sh "rm -r /var/lib/jenkins/go/src/images-api"
+                 sh "rm -rf /var/lib/jenkins/go/src/images-api"
               }
         }
      }

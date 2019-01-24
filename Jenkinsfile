@@ -2,10 +2,6 @@ pipeline {
      agent any
 
 
-     environment {
-        GOPATH = "$GOPATH"
-        WORKSPACE = "$WORKSPACE"
-    }
 
      stages {
          stage('version') {

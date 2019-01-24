@@ -1,22 +1,37 @@
+def scmVars;
+def commitHash
+
 pipeline {
      agent any
 
      stages {
 
-         stage('version') {
+        stage('init') {
+            steps {
+              checkout scm
+            }
+        }
 
+        stage('version') {
              steps {
+               sh "mkdir /var/lib/jenkins/go/src/images-api"
+               sh "cp -r * /var/lib/jenkins/go/src/images-api"
+               sh "go env"
                sh "go version"
              }
-         }
+        }
 
-         stage('build') {
+        stage('build') {
               steps {
-                 sh "export GOPATH=/var/lib/jenkins/workspace/images-api-pipeline"
-                 sh "go env"
-                 sh "go build -v -work  -o ./bin/images-api src/main.go"
+                 sh "go build -v -work  -o ./bin/images-api code/main.go"
               }
-         }
+        }
+
+        stage('clean') {
+              steps {
+                 sh "rm -r /var/lib/jenkins/go/src/images-api"
+              }
+        }
      }
 
      post {

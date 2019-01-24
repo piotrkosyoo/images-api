@@ -5,7 +5,8 @@ pipeline {
          stage('version') {
              steps {
                sh "go version"
-               }
+               sh "go env"
+             }
          }
 
          stage('build') {

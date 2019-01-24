@@ -2,7 +2,7 @@ package code
 
 import (
 	"fmt"
-	"images-api/code/images"
+	"images-api/main/images"
 	"log"
 	"net/http"
 	"sync"

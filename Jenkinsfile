@@ -7,13 +7,14 @@ pipeline {
      stages {
 
         stage('init') {
-            steps {
-              checkout scm
-            }
+             steps {
+                checkout scm
+             }
         }
 
-        stage('version') {
+        stage('Prepare') {
              steps {
+               // if go env is GOPATH="/var/lib/jenkins/go" then just create temp data on path and later remove app will be in workspace bin folder
                sh "mkdir /var/lib/jenkins/go/src/images-api"
                sh "cp -r * /var/lib/jenkins/go/src/images-api"
                sh "go env"
@@ -21,13 +22,13 @@ pipeline {
              }
         }
 
-        stage('build') {
+        stage('Build') {
               steps {
-                 sh "go build -v -work  -o ./bin/images-api code/main.go"
+                 sh "go build -v -work  -o ./bin/images-api-app code/main.go"
               }
         }
 
-        stage('clean') {
+        stage('Clean') {
               steps {
                  sh "rm -r /var/lib/jenkins/go/src/images-api"
               }

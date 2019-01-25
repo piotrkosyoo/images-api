@@ -37,7 +37,7 @@ pipeline {
 
         stage('deploy') {
             steps {
-                sh "docker-restart-containers.sh"
+                sh "sh docker-restart-containers.sh"
             }
         }
      }

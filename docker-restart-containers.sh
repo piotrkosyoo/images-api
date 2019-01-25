@@ -11,7 +11,7 @@ if [[ -n "$containers" ]]; then
 	echo "Remove all containers"
 	docker rm $containers
 else
-    echo "Containers empty-skip remove"
+    echo "Containers skip remove "
 fi
 
 image=$(docker images images-api)

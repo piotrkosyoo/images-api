@@ -28,7 +28,7 @@ func infoEndpoint(w http.ResponseWriter, r *http.Request) {
 	mu.Lock()
 	count++
 	mu.Unlock()
-	fmt.Fprintf(w, "URL.Path = %q\n", r.URL.Path)
+	fmt.Fprintf(w, "Docker URL.Path = %q\n", r.URL.Path)
 }
 
 func printSinusDefault(w http.ResponseWriter, r *http.Request) {

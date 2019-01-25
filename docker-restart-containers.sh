@@ -18,7 +18,7 @@ image=$(docker images images-api)
 
 if [[ -n "$image" ]]; then
     echo "Delete images-api image"
-	docker rm $image
+	docker rmi $image
 else
     echo "Image empty-skip remove"
 fi

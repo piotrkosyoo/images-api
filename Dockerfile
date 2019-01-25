@@ -1,6 +1,6 @@
 FROM golang:alpine
-RUN mkdir /app
-ADD . /app/
-WORKDIR /app
-RUN go build -o main .
-CMD ["/app/main"]
+RUN mkdir /go/src/images-api
+ADD . /go/src/images-api
+WORKDIR /go/src/images-api
+EXPOSE 8081
+CMD ["go", "run", "main/main.go"]

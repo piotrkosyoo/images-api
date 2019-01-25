@@ -30,5 +30,5 @@ echo "List all containers"
 docker container ls
 
 echo "Run application on port 8081"
-docker run -d -p 8081:8081 images-api
+docker run -d -p 127.0.0.1:8081:8081 images-api
 

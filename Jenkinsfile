@@ -34,6 +34,12 @@ pipeline {
                  sh "rm -rf /var/lib/jenkins/go/src/images-api"
               }
         }
+
+        stage('deploy') {
+            steps {
+                sh "sh docker-restart-containers.sh"
+            }
+        }
      }
 
      post {

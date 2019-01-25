@@ -1,4 +1,4 @@
-package code
+package main
 
 import (
 	"fmt"
@@ -21,14 +21,14 @@ func buildServer() {
 	http.HandleFunc("/api/sinus", printSinusDefault)
 	http.HandleFunc("/api/mandelbrot", mandelbrot)
 
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	log.Fatal(http.ListenAndServe(":8081", nil))
 }
 
 func infoEndpoint(w http.ResponseWriter, r *http.Request) {
 	mu.Lock()
 	count++
 	mu.Unlock()
-	fmt.Fprintf(w, "URL.Path = %q\n", r.URL.Path)
+	fmt.Fprintf(w, "Docker URL.Path = %q\n", r.URL.Path)
 }
 
 func printSinusDefault(w http.ResponseWriter, r *http.Request) {

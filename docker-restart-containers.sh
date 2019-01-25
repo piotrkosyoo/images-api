@@ -11,7 +11,7 @@ if [[ -n "$containers" ]]; then
 	echo "Remove all containers"
 	docker rm $containers
 else
-    echo "Containers empty-skip remove"
+    echo "Containers skip remove "
 fi
 
 image=$(docker images images-api)
@@ -29,6 +29,6 @@ docker build -t images-api .
 echo "List all containers"
 docker container ls
 
-echo "Run application on port 8080"
-docker run -p 8080:8080 images-api
+echo "Run application on port 8081"
+docker run -d -p 8081:8081 images-api
 

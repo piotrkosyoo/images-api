@@ -8,6 +8,7 @@ import (
 	"sync"
 )
 
+// Piotr Kosmala
 // sync counter
 var mu sync.Mutex
 var count int

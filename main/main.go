@@ -23,6 +23,7 @@ func buildServer() {
 	http.HandleFunc("/api/info", infoEndpoint)
 	http.HandleFunc("/api/mandelbrot", colorMandelbrot)
 	log.Fatal(http.ListenAndServe(":8081", nil))
+
 }
 
 func infoEndpoint(w http.ResponseWriter, r *http.Request) {

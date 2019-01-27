@@ -5,6 +5,7 @@ import (
 	"images-api/main/images"
 	"log"
 	"net/http"
+	"strconv"
 	"sync"
 )
 
@@ -34,19 +35,29 @@ func infoEndpoint(w http.ResponseWriter, r *http.Request) {
 }
 
 func colorMandelbrot(w http.ResponseWriter, r *http.Request) {
-
 	keys := r.URL.Query()
-	if len(keys) < 1 {
-		// keys.Get("zoom")
-		log.Println("Url Param 'key' is missing")
+	var shiftX = float64(0)
+	var shiftY = float64(0)
+	var zoom = int(1)
+
+	if ShiftX, err := strconv.ParseFloat(keys.Get("ShiftX"), 64); err == nil {
+		shiftX = ShiftX
+	}
+
+	if ShiftY, err := strconv.ParseFloat(keys.Get("ShiftY"), 64); err == nil {
+		shiftY = ShiftY
+	}
+
+	if Zoom, err := strconv.ParseInt(keys.Get("zoom"), 10, 64); err == nil {
+		zoom = int(Zoom)
 	}
 
 	params := images.Params{
-		Width:     600,
-		Height:    600,
-		Iteration: 200,
-		Zoom:      1,
-		Contrast:  15,
+		Width:     1200,
+		Height:    1000,
+		Iteration: 240,
+		Zoom:      zoom,
+		Contrast:  10,
 		YMax:      2,
 		YMin:      -2,
 		XMax:      2,
@@ -57,8 +68,8 @@ func colorMandelbrot(w http.ResponseWriter, r *http.Request) {
 			B: 140,
 			A: 255,
 		},
-		ShiftX: 0,
-		ShiftY: 0,
+		ShiftX: shiftX,
+		ShiftY: shiftY,
 	}
 	images.DrawColorMandelbrot(params, w)
 	w.Header().Set("Content-Type", "image/png")

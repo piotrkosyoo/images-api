@@ -24,10 +24,16 @@ class ImageForm extends Component {
         this.assign = this.assign.bind(this);
         this.sendRequestImage = this.sendRequestImage.bind(this);
         this.updateImage = this.updateImage.bind(this);
+        this.wheel = this.wheel.bind(this)
     }
 
     componentDidMount() {
         this.sendRequestImage();
+    }
+
+    wheel(e, zoom) {
+        const newValue = zoom + Number(e.deltaY)/100;
+        this.setState({zoom: newValue}, this.sendRequestImage);
     }
 
     sendRequestImage() {
@@ -62,7 +68,7 @@ class ImageForm extends Component {
                     </Grid.Column>
                     <Grid.Column width={3}>
                         <Input icon='user' iconPosition='left' type='number' placeholder='Zoom' id="zoom"
-                               defaultValue={zoom} onChange={(e, data) => this.assign(e.target.id, Number(data.value))}
+                               value={zoom} onChange={(e, data) => this.assign(e.target.id, Number(data.value))}
                         />
                         <Label as='a' color='teal' tag>
                             Zoom {zoom * zoomSteep}
@@ -123,7 +129,9 @@ class ImageForm extends Component {
 
             <Grid>
                 <Grid.Column>
+                    <div onWheel = {(e) => this.wheel(e, zoom)}>
                         <Image src={imageBase64} size='huge' centered/>
+                    </div>
                 </Grid.Column>
             </Grid>
             </div>

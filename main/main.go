@@ -35,6 +35,12 @@ func infoEndpoint(w http.ResponseWriter, r *http.Request) {
 }
 
 func colorMandelbrot(w http.ResponseWriter, r *http.Request) {
+
+	setupCorsResponse(&w, r)
+	if (*r).Method == "OPTIONS" {
+		return
+	}
+
 	keys := r.URL.Query()
 	var shiftX = float64(0)
 	var shiftY = float64(0)
@@ -71,6 +77,12 @@ func colorMandelbrot(w http.ResponseWriter, r *http.Request) {
 		ShiftX: shiftX,
 		ShiftY: shiftY,
 	}
-	images.DrawColorMandelbrot(params, w)
-	w.Header().Set("Content-Type", "image/png")
+	images.DrawColorMandelbrotBase64(params, w)
+	w.Header().Set("Content-Type", "text/plain")
+}
+
+func setupCorsResponse(w *http.ResponseWriter, req *http.Request) {
+	(*w).Header().Set("Access-Control-Allow-Origin", "*")
+	(*w).Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
+	(*w).Header().Set("Access-Control-Allow-Headers", "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
 }

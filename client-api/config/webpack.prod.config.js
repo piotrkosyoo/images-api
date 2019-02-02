@@ -2,6 +2,7 @@ const config = require('./webpack.config');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 
+
 function buildConfig(env) {
     const baseConfig = config(env);
     return merge(baseConfig, {

@@ -1,7 +1,7 @@
 const origin = window.location.origin;
 
 // eslint-disable-next-line no-undef
-const uri = API_IMAGES;
+const uri = "http://localhost:8081/api/mandelbrot?";
 
 export default function getImage(params, callback) {
     fetch(uri + params, {

@@ -20,7 +20,7 @@ func main() {
 
 func buildServer() {
 	fs := http.FileServer(http.Dir("client-api"))
-	http.Handle("/client-api/", fs)
+	http.Handle("/client-api/*", fs)
 
 	http.HandleFunc("/api/info", infoEndpoint)
 	http.HandleFunc("/api/mandelbrot", colorMandelbrot)

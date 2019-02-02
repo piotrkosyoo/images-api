@@ -32,6 +32,7 @@ class ImageForm extends Component {
     }
 
     wheel(e, zoom) {
+        e.preventDefault();
         const newValue = zoom + Number(e.deltaY)/100;
         this.setState({zoom: newValue}, this.sendRequestImage);
     }

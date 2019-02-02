@@ -69,8 +69,8 @@ func colorMandelbrot(w http.ResponseWriter, r *http.Request) {
 		XMin:      -2,
 		DrawColor: images.DrawColors{
 			R: 200,
-			G: 160,
-			B: 140,
+			G: 150,
+			B: 100,
 			A: 255,
 		},
 		ShiftX: shiftX,

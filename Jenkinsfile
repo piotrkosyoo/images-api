@@ -5,6 +5,10 @@ pipeline {
 
      agent any
 
+     tools {
+        nodejs "node"
+     }
+
      stages {
 
         stage('Init') {
@@ -16,6 +20,7 @@ pipeline {
         stage('Prepare') {
              steps {
                // if go env is GOPATH="/var/lib/jenkins/go" then just create temp data on path and later remove app will be in workspace bin folder
+               sh "rm -rf /var/lib/jenkins/go/src/images-api"
                sh "mkdir /var/lib/jenkins/go/src/images-api"
                sh "cp -r * /var/lib/jenkins/go/src/images-api"
                sh "go env"
@@ -29,7 +34,7 @@ pipeline {
                     dir("client-api") {
                         sh "npm -v"
                         sh "node -v"
-                        sh "npm ci"
+                        sh "npm install"
                         sh "npm run build"
                     }
                  }

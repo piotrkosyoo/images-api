@@ -34,7 +34,7 @@ pipeline {
                     dir("client-api") {
                         sh "npm -v"
                         sh "node -v"
-                        sh "npm install"
+                        sh "npm ci"
                         sh "npm run build"
                     }
                  }

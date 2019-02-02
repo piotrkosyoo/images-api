@@ -23,7 +23,20 @@ pipeline {
              }
         }
 
-        stage('Build') {
+        stage('Build UI') {
+              steps {
+                 script {
+                    dir("client-api") {
+                        sh "npm -v"
+                        sh "node -v"
+                        sh "npm ci"
+                        sh "npm run build"
+                    }
+                 }
+              }
+        }
+
+        stage('Build backend') {
               steps {
                  sh "go build -v -work  -o ./bin/images-api-app main/main.go"
               }

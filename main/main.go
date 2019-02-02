@@ -19,11 +19,11 @@ func main() {
 }
 
 func buildServer() {
-	fs := http.FileServer(http.Dir("static"))
-	http.Handle("/static/", http.StripPrefix("/static/", fs))
+	fs := http.FileServer(http.Dir("client-api"))
+	http.Handle("/client-api/", fs)
+
 	http.HandleFunc("/api/info", infoEndpoint)
 	http.HandleFunc("/api/mandelbrot", colorMandelbrot)
-
 	log.Fatal(http.ListenAndServe(":8081", nil))
 }
 

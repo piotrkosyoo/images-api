@@ -14,7 +14,7 @@ else
     echo "Containers skip remove "
 fi
 
-image=$(docker images images-api)
+image=$(docker images yogibubu/images-api)
 
 if [[ -n "$image" ]]; then
     echo "Delete images-api image"
@@ -24,11 +24,11 @@ else
 fi
 
 echo "Build new image from Dockerfile"
-docker build -t images-api .
+docker build -t yogibubu/images-api .
 
 echo "List all containers"
 docker container ls
 
 echo "Run application on port 8081"
-docker run -d -p 127.0.0.1:8081:8081 images-api
+docker run -d -p 127.0.0.1:8081:8081 yogibubu/images-api
 

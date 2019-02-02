@@ -7,7 +7,7 @@ function buildConfig(env) {
     return merge(baseConfig, {
         plugins: [
             new webpack.DefinePlugin({
-                API_IMAGES: JSON.stringify("http://ec2-34-241-76-172.eu-west-1.compute.amazonaws.com/api/mandelbrot?")
+                API_IMAGES: JSON.stringify("http://localhost:8081/api/mandelbrot?")
             })
         ],
     });

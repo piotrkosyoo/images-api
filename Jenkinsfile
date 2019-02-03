@@ -43,6 +43,7 @@ pipeline {
 
         stage('Build backend') {
               steps {
+                 sh "go get github.com/lucasb-eyer/go-colorful"
                  sh "go build -v -work  -o ./bin/images-api-app main/main.go"
               }
         }

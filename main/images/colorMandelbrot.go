@@ -3,25 +3,20 @@ package images
 import (
 	"bytes"
 	"encoding/base64"
+	"github.com/lucasb-eyer/go-colorful"
 	"image"
 	"image/color"
 	"image/png"
+	"math"
 	"math/cmplx"
 	"net/http"
 )
 
 // Piotr Kosmala
-
-type DrawColors struct {
-	R, G, B, A uint8
-}
-
 type Params struct {
-	Width, Height, Zoom    int
-	Iteration, Contrast    uint8
-	YMax, YMin, XMax, XMin int8
-	DrawColor              DrawColors
-	ShiftX, ShiftY         float64
+	Width, Height, Zoom, MAX_ITERATION int
+	YMax, YMin, XMax, XMin             int8
+	ShiftX, ShiftY                     float64
 }
 
 func DrawColorMandelbrot(params Params, w http.ResponseWriter) {
@@ -33,8 +28,18 @@ func DrawColorMandelbrot(params Params, w http.ResponseWriter) {
 			zy := ((((float64(y) + params.ShiftY) / float64(params.Height)) * float64(params.YMax-params.YMin)) + float64(params.YMin)) / float64(params.Zoom)
 			z0 := complex(0, 0)
 			p := complex(zx, zy)
-			color := complexColor(z0, p, params)
-			img.Set(x, y, color)
+
+			// The color depends on the number of iterations
+			m := complexColor(z0, p, params)
+
+			colorIndex := uint8(255 - int(int(m*255)/int(params.MAX_ITERATION)))
+
+			img.Set(x, y, color.RGBA{
+				R: colorIndex,
+				G: colorIndex,
+				B: colorIndex,
+				A: 255,
+			})
 		}
 	}
 	png.Encode(w, img)
@@ -42,6 +47,7 @@ func DrawColorMandelbrot(params Params, w http.ResponseWriter) {
 
 func DrawColorMandelbrotBase64(params Params, w http.ResponseWriter) {
 	img := image.NewRGBA(image.Rect(0, 0, params.Width, params.Height))
+
 	for x := 0; x < params.Width; x++ {
 		for y := 0; y < params.Height; y++ {
 			// setup cords
@@ -49,8 +55,28 @@ func DrawColorMandelbrotBase64(params Params, w http.ResponseWriter) {
 			zy := ((((float64(y) + params.ShiftY) / float64(params.Height)) * float64(params.YMax-params.YMin)) + float64(params.YMin)) / float64(params.Zoom)
 			z0 := complex(0, 0)
 			p := complex(zx, zy)
-			color := complexColor(z0, p, params)
-			img.Set(x, y, color)
+
+			// The color depends on the number of iterations
+			iter := complexColor(z0, p, params)
+
+			h := float64(float64(255*iter) / float64(params.MAX_ITERATION))
+			s := float64(255)
+			v := 255
+
+			if iter >= 255 {
+				v = 0
+			}
+
+			c := colorful.Hsv(float64(h), float64(s), float64(v))
+
+			r, g, b, a := c.RGBA()
+
+			img.Set(x, y, color.RGBA{
+				R: uint8(r),
+				G: uint8(g),
+				B: uint8(b),
+				A: uint8(a),
+			})
 		}
 	}
 
@@ -66,18 +92,17 @@ func DrawColorMandelbrotBase64(params Params, w http.ResponseWriter) {
 	w.Write([]byte(encodedString))
 }
 
-func complexColor(z, p complex128, params Params) color.Color {
-	for n := uint8(0); n < params.Iteration; n++ {
+func complexColor(z, p complex128, params Params) float64 {
+	var n int = 0
+	for n < params.MAX_ITERATION && cmplx.Abs(z) <= 2 {
 		z = z*z + p
-		// check sum number lim n -> nan if not the in our number
-		if cmplx.Abs(z) > 2 {
-			return color.RGBA{
-				R: params.DrawColor.R - n*params.Contrast,
-				G: params.DrawColor.G - n*params.Contrast,
-				B: params.DrawColor.B - n*params.Contrast,
-				A: params.DrawColor.A,
-			}
-		}
+		n++
 	}
-	return color.Black
+
+	if n == params.MAX_ITERATION {
+		return float64(n)
+	}
+	// check sum number lim n -> nan if not the in our number
+
+	return float64(n+1) - math.Log(math.Log2(cmplx.Abs(z)))
 }

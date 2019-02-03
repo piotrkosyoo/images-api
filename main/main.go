@@ -19,8 +19,11 @@ func main() {
 }
 
 func buildServer() {
-	fs := http.FileServer(http.Dir("client-api"))
-	http.Handle("/client-api/", fs)
+	fs := http.FileServer(http.Dir("./client-api/build"))
+	http.Handle("/client-api/", http.StripPrefix("/client-api", fs))
+
+	fss := http.FileServer(http.Dir("./client-api/build/static"))
+	http.Handle("/static/", http.StripPrefix("/static", fss))
 
 	http.HandleFunc("/api/info", infoEndpoint)
 	http.HandleFunc("/api/mandelbrot", colorMandelbrot)

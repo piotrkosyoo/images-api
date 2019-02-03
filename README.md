@@ -1,4 +1,8 @@
-# images-api GO
+# images-api
+
+## Example app with golang and javascript, build on jenkins and run on docker
+
+:beers: :wink:
 
 [![Build Status](http://ec2-34-241-76-172.eu-west-1.compute.amazonaws.com/buildStatus/icon?job=images-api-pipeline)](http://ec2-34-241-76-172.eu-west-1.compute.amazonaws.com/buildStatus/icon?job=images-api-pipeline)
 
@@ -38,4 +42,4 @@ Available on page
 
 [images-api](https://ec2-34-241-76-172.eu-west-1.compute.amazonaws.com/client-api/)
 
-@octocat :+1:
+:beers:

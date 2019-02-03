@@ -6,23 +6,36 @@ Simple golang project to run in docker container
 
 Golang application build on Jenkins 
 
-Version 0.0.1
+## Run on docker
 
-Fix some problem with
+_To using  app you need install below software_
 
-sh "go env"
+```ruby
+docker
+npm 
+node
+golang
+```
 
-GOHOSTARCH="amd64"
-GOHOSTOS="linux"
-GOOS="linux"
-GOPATH="/var/lib/jenkins/go"
-GORACE=""
-GOROOT="/usr/lib/golang"
+* Build UI before in clinet-api folder run npm script "build"
+* Call script "sh docker-stop-remove-containers" in root folder
 
-Then create temp code in GOPATH it solve all problem with import packages
+## Run without  docker
 
-src/main.go:5:2: cannot find package  in any of:
-/usr/lib/golang/src/ (from $GOROOT)
-/var/lib/jenkins/go/src/(from $GOPATH)
+_You need installed:_
+```ruby
+npm 
+node
+golang
+```
 
-Or you can use dockerfile to build declarative agent
+* Compile and run rile main.go in main folder
+* Run dev-server for UI application "npm run start"
+
+## Demo
+
+Available on page
+
+[images-api](https://ec2-34-241-76-172.eu-west-1.compute.amazonaws.com/client-api/)
+
+@octocat :+1:

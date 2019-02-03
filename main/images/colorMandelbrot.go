@@ -60,8 +60,8 @@ func DrawColorMandelbrotBase64(params Params, w http.ResponseWriter) {
 			iter := complexColor(z0, p, params)
 
 			h := float64(float64(255*iter) / float64(params.MAX_ITERATION))
-			s := float64(255)
-			v := 255
+			s := float64(1)
+			v := 1
 
 			if iter >= 255 {
 				v = 0

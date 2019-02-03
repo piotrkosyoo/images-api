@@ -25,8 +25,8 @@ func DrawColorMandelbrotHSV(params Params, w http.ResponseWriter) {
 			//colorIndex := uint8(255 - int( int(m * 255) / int(params.MAX_ITERATION)))
 
 			hue := int(int(255*m) / params.MAX_ITERATION)
-			saturation := 255
-			value := 255
+			saturation := 1
+			value := 1
 
 			if m >= float64(params.MAX_ITERATION) {
 				value = 0

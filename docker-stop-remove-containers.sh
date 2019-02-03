@@ -23,12 +23,3 @@ else
     echo "Image empty-skip remove"
 fi
 
-echo "Build new image from Dockerfile"
-docker build -t yogibubu/images-api .
-
-echo "List all containers"
-docker container ls
-
-echo "Run application on port 8081"
-docker run -d -p 127.0.0.1:8081:8081 yogibubu/images-api
-

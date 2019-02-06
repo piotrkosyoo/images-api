@@ -1,6 +1,8 @@
 def scmVars;
 def commitHash
 
+def deployToDev = false
+
 pipeline {
 
      agent any
@@ -29,12 +31,14 @@ pipeline {
         }
 
         stage('Build UI') {
+
               steps {
+
                  script {
                     dir("client-api") {
                         sh "npm -v"
                         sh "node -v"
-
+                        // UI build in code to slow on AWS
                         //sh "npm install"
                         //sh "npm run build"
                     }
@@ -43,6 +47,7 @@ pipeline {
         }
 
         stage('Build backend') {
+
               steps {
                  sh "go get github.com/lucasb-eyer/go-colorful"
                  sh "go build -v -work  -o ./bin/images-api-app main/main.go"
@@ -50,12 +55,40 @@ pipeline {
         }
 
         stage('Clean') {
+
               steps {
                  sh "rm -rf /var/lib/jenkins/go/src/images-api"
               }
         }
 
-        stage('deploy') {
+
+        stage('Deploy to dev') {
+
+            agent none
+
+            steps {
+
+                script {
+
+                    try {
+                        timeout(time: 200, unit: 'SECONDS') {
+                            deployToDev = input(
+                                            id: 'Proceed1', message: 'Do you want deploy  to dev ?', parameters: [
+                                            [$class: 'BooleanParameterDefinition', defaultValue: true, description: '', name: 'Please confirm you agree with this']])
+                        }
+                    } catch(err) {
+                        deployToDev = false
+                    }
+                }
+            }
+        }
+
+        stage('Deploy') {
+
+            when {
+                expression { deployToDev != false}
+            }
+
             steps {
                 sh "sh docker-restart-containers.sh"
             }

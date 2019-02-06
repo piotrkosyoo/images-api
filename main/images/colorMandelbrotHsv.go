@@ -5,6 +5,7 @@ import (
 	"image"
 	"image/color"
 	"image/png"
+	"math"
 	"math/cmplx"
 	"net/http"
 )
@@ -54,5 +55,11 @@ func complexcolor(z, p complex128, params Params) float64 {
 		z = z*z + p
 		n++
 	}
-	return float64(n)
+
+	if n == params.MAX_ITERATION {
+		return float64(n)
+	}
+	// check sum number lim n -> nan if not the in our number
+
+	return float64(n+1) - math.Log(math.Log2(cmplx.Abs(z)))
 }

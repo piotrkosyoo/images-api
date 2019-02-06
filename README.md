@@ -40,6 +40,6 @@ golang
 
 Available on page
 
-[images-api](https://ec2-34-241-76-172.eu-west-1.compute.amazonaws.com/client-api/)
+[images-api](http://ec2-34-241-76-172.eu-west-1.compute.amazonaws.com/client-api/)
 
 :beers:

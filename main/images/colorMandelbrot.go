@@ -69,13 +69,13 @@ func DrawColorMandelbrotBase64(params Params, w http.ResponseWriter) {
 
 			c := colorful.Hsv(float64(h), float64(s), float64(v))
 
-			r, g, b, a := c.RGBA()
+			r, g, b, _ := c.RGBA()
 
 			img.Set(x, y, color.RGBA{
 				R: uint8(r),
 				G: uint8(g),
 				B: uint8(b),
-				A: uint8(a),
+				A: uint8(255),
 			})
 		}
 	}

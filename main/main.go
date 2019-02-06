@@ -66,7 +66,7 @@ func colorMandelbrot(w http.ResponseWriter, r *http.Request) {
 	params := images.Params{
 		Width:         600,
 		Height:        600,
-		MAX_ITERATION: 120,
+		MAX_ITERATION: 80,
 		Zoom:          zoom,
 		YMax:          2,
 		YMin:          -2,

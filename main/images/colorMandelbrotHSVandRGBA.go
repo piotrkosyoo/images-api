@@ -48,8 +48,6 @@ func createImageHSV(params Params) image.Image {
 			// The color depends on the number of iterations
 			m := complexColorHSV(z0, p, params)
 
-			//colorIndex := uint8(255 - int( int(m * 255) / int(params.MAX_ITERATION)))
-
 			hue := m / float64(params.MAX_ITERATION)
 			saturation := 1
 			value := 1

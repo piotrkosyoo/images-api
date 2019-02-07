@@ -25,7 +25,7 @@ func DrawColorMandelbrotHSV(params Params, w http.ResponseWriter) {
 
 			//colorIndex := uint8(255 - int( int(m * 255) / int(params.MAX_ITERATION)))
 
-			hue := int((int(255*m) / params.MAX_ITERATION) / 255)
+			hue := m / float64(params.MAX_ITERATION)
 			saturation := 1
 			value := 1
 
@@ -59,7 +59,6 @@ func complexcolor(z, p complex128, params Params) float64 {
 	if n == params.MAX_ITERATION {
 		return float64(n)
 	}
-	// check sum number lim n -> nan if not the in our number
 
 	return float64(n+1) - math.Log(math.Log2(cmplx.Abs(z)))
 }

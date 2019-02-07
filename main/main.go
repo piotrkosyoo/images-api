@@ -19,7 +19,6 @@ func main() {
 }
 
 func buildServer() {
-
 	// UI serve files
 	fs := http.FileServer(http.Dir("./client-api/build"))
 	http.Handle("/client-api/", http.StripPrefix("/client-api", fs))
@@ -29,7 +28,7 @@ func buildServer() {
 	// api handler
 	http.HandleFunc("/api/info", infoEndpoint)
 	http.HandleFunc("/api/mandelbrot", colorMandelbrotBase64)
-	http.HandleFunc("/api/test/mandelbrot", colorMandelbrot)
+	http.HandleFunc("/api/test/mandelbrot", colorMandelbrotImage)
 	log.Fatal(http.ListenAndServe(":8081", nil))
 }
 
@@ -40,7 +39,7 @@ func infoEndpoint(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "URL.Path = [%q] visitNumber=[%d] \n", r.URL.Path, count)
 }
 
-func colorMandelbrot(w http.ResponseWriter, r *http.Request) {
+func colorMandelbrotImage(w http.ResponseWriter, r *http.Request) {
 	setupCorsResponse(&w, r)
 	if (*r).Method == "OPTIONS" {
 		return
@@ -66,7 +65,7 @@ func colorMandelbrot(w http.ResponseWriter, r *http.Request) {
 	params := images.Params{
 		Width:         600,
 		Height:        600,
-		MAX_ITERATION: 120,
+		MAX_ITERATION: 80,
 		Zoom:          zoom,
 		YMax:          2,
 		YMin:          -2,
@@ -75,7 +74,8 @@ func colorMandelbrot(w http.ResponseWriter, r *http.Request) {
 		ShiftX:        shiftX,
 		ShiftY:        shiftY,
 	}
-	images.DrawColorMandelbrotHSV(params, w)
+
+	images.DrawColorMandelbrotHSVImage(params, w)
 	w.Header().Set("Content-Type", "text/plain")
 }
 
@@ -114,7 +114,8 @@ func colorMandelbrotBase64(w http.ResponseWriter, r *http.Request) {
 		ShiftX:        shiftX,
 		ShiftY:        shiftY,
 	}
-	images.DrawColorMandelbrotBase64(params, w)
+
+	images.DrawColorMandelbrotHSVBase64(params, w)
 	w.Header().Set("Content-Type", "text/plain")
 }
 

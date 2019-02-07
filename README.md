@@ -43,7 +43,7 @@ Available on page
 [images-api](http://ec2-34-241-76-172.eu-west-1.compute.amazonaws.com/client-api/)
 
 _![](http://ec2-34-241-76-172.eu-west-1.compute.amazonaws.com/api/test/mandelbrot)_
-_![](http://ec2-34-241-76-172.eu-west-1.compute.amazonaws.com/api/test/mandelbrot?zoom=10&ShiftX=-4570&ShiftY=-4)_
+_![](http://ec2-34-241-76-172.eu-west-1.compute.amazonaws.com/api/test/mandelbrot?zoom=5&ShiftX=-1211&ShiftY=-14)_
 
 
 :beers:
